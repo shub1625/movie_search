@@ -1,0 +1,10 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% else %}
+<h1 >You Need to Log in or Sign up to view Details</h1>
+{% endif %}
+{% endblock content %}

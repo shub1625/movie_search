@@ -1,0 +1,58 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container" >
+<div class="container">
+    <div class="row">
+
+    <form action="" method="get">
+        {% csrf_token %}
+        {{myFilter.form}}
+
+        <button class="btn btn-primary"type="submit">Search</button>
+    </form>
+
+</div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+
+    {% for movie in movies %}
+
+        <div class="col-md-6 col-lg-4 mb-16">
+            <div class="card" style="width: 18rem;">
+            <img class="card-img-top " 
+            {% if movie.movie_pic.url %}
+                src="{{movie.movie_pic.url}}"
+            {% else %}
+                src = "{% url 'img/noimg.png' %}"
+            {% endif %} alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{movie.title}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">language : {{movie.language}}</li>
+                <li class="list-group-item">year : {{movie.year}}</li>
+                <li class="list-group-item">rating : {{movie.rating}}</li>
+            </ul>
+            {% if user.is_staff %}
+            <div class="card-body">
+                <a href="{% url 'update_movies' pk=movie.id %}" class="card-link">update</a>
+                <a href="{% url 'delete_movies' pk=movie.id %}" class="card-link">delete</a>
+            </div>
+            <br>
+            <br>
+            {% endif %}
+            
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+</div>
+</div>
+{% endblock content %}

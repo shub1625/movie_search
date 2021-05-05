@@ -1,0 +1,45 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class = "container  user_card center">
+    <form action="" method = 'POST' >
+        {% csrf_token %}
+        <ul>
+            <ul>{{form.username.label }} : {{form.username}}</ul>
+        </ul>
+        <ul>
+             <ul>{{form.first_name.label }} : {{form.first_name}}</ul>
+        </ul>
+       <ul>
+            <ul>{{form.last_name.label }} : {{form.last_name}}</ul>
+       </ul>
+        <ul>
+            <ul>{{form.email.label }} : {{form.email}}</ul>
+        </ul>
+        <ul>
+            <ul>{{form.password1.label }} : {{form.password1}}</ul>
+        </ul>
+        <ul>
+            <ul>{{form.password2.label }} : {{form.password2}}</ul>
+        </ul>
+        <ul>
+            <ul> <input class="btn btn-primary center" type="submit" value="create user"></ul>
+        </ul>
+        <ul>
+            {% if form.errors %}
+                <ul>{{form.errors}}</ul>
+            {% else %}
+                {% for message in messages %}
+                <ul>{{message}}</ul>
+                {% endfor %}  
+            {% endif %}     
+        </ul>
+        
+    
+    
+   
+</form>
+</div>
+{% endblock content %}

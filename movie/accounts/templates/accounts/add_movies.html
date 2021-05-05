@@ -1,0 +1,15 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class= "container center user_card">
+    <form action="" method="POST" class = "center" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn btn-primary center" type="submit" value="Add movie">
+</form>
+</div>
+
+
+{% endblock content %}
